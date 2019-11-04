@@ -1,0 +1,45 @@
+::ng-deep .settings-select .mat-form-field-underline {
+    display: none;
+  }
+.form-input-style {
+margin: 20px;
+text-align: right;
+float: right;
+}
+.form-input-style2 {
+    float: left;
+    margin: 10px;
+    }
+::ng-deep .mat-select-arrow {
+border-left: 15px solid transparent !important;
+border-right: none !important;
+border-top: 15px solid transparent !important;
+border-image-repeat: stretch !important;
+width: 0%;
+height: 0%;
+margin: 0px;
+}
+.btn-pos{
+    float: right;
+    width: 40px;
+}
+.settings-select{
+    width: 40px;
+    float: left;
+}
+.tabb{
+    text-align: right !important;
+    direction: rtl;
+}
+.example-container {
+    height: 400px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+    text-align: right;
+  }
+  .mat-header-cell {
+    text-align: right;    
+}

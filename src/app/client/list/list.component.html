@@ -1,0 +1,107 @@
+<div  class="container">
+    <button class = "btn-pos" mat-flat-button	>
+        <i class="material-icons">
+                search
+        </i>
+    </button>
+    <button class = "btn-pos" mat-flat-button	>
+        <i class="material-icons">
+                arrow_downward
+        </i>
+    </button>
+    <button class = "btn-pos" mat-flat-button	>
+        <i class="material-icons">
+                refresh
+        </i>
+    </button>
+    <button class = "btn-pos" mat-flat-button	>
+        <i class="material-icons">
+                print
+        </i>
+    </button>
+
+    <mat-form-field class="settings-select">
+            <mat-label>
+                <i class="material-icons">
+                    settings_applications
+                </i>
+            </mat-label>
+            <mat-select>
+                    <mat-option *ngFor="let item of tableHeaders.headers">
+                            <input type="checkbox" [(ngModel)]="item.exist"/> 
+                            <label for="checkbox_id">{{item.ar}}</label>
+                    </mat-option>
+            </mat-select>
+    </mat-form-field>
+
+    <div style="display: inline-block; width: 100%;">
+            <mat-expansion-panel >
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-label>
+                        اضافة
+                    </mat-label>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+        
+            <form [formGroup]="profileForm">            
+                    <ng-container *ngFor="let item of tableHeaders.headers ">
+                        <mat-form-field class="form-input-style" *ngIf="item.key != 'id'">
+                            <input class="form-input-style-text" placeholder="{{item.ar}}" matInput  
+                            type="text" formControlName="{{item.key}}">
+                            <mat-error *ngIf="profileForm.controls[item.key].hasError('required')">
+                                هذا الحقل <strong>مطلوب</strong>
+                            </mat-error>
+                            <mat-error *ngIf="profileForm.controls[item.key].hasError('email')">
+                                    ايميل <strong>خاطئ</strong>
+                                </mat-error>
+                        </mat-form-field>   
+                    </ng-container>     
+                    <button class="form-input-style2" mat-stroked-button>تسجيل</button>
+            </form>
+            
+
+        </mat-expansion-panel>
+    </div>
+
+
+    <div class="example-container mat-elevation-z8 tabb">
+        <table mat-table [dataSource]="List" multiTemplateDataRows >
+                <ng-container matColumnDef="tableHeaders.headers">
+                        <mat-cell *matCellDef="let group"><input type="text" placeholder="{{group.ar}}" ></mat-cell>
+                      </ng-container>
+          <ng-container *ngFor="let item of tableHeaders.headers" >
+                <ng-container matColumnDef="{{item.key}}">
+                    <th mat-header-cell *matHeaderCellDef> {{item.ar}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element[item.key]}} </td>
+                </ng-container>
+        
+          </ng-container>
+          <mat-row *matRowDef="let row; columns: ['tableHeaders.headers']"></mat-row>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+
+        </table>
+      </div>
+    <!-- <div class="table-responsive tabb">
+        <table  class="table tabb">
+            <thead class="thead-dark">
+                <tr>
+                    <ng-container *ngFor="let item of List[0] | keyvalue">
+                        <th scope="col" *ngIf="tableHeaders[item.key].exist">
+                            {{tableHeaders[item.key].ar}}
+                        </th>
+                    </ng-container>           
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of List">
+                    <ng-container *ngFor="let cell of item | keyvalue" >
+                        <td *ngIf="tableHeaders[cell.key].exist">{{cell.value}}</td>
+                    </ng-container>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+</div>
